@@ -13,7 +13,6 @@ struct node{
 	void* data;
 	node_ptr next;
 };
-// int n = 90;
 
 struct student{
 	int id;
@@ -21,3 +20,4 @@ struct student{
 };
 
 LinkedList createList(void);
+Node * create_node(void *data);
