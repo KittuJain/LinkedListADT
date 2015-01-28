@@ -17,3 +17,28 @@ void test_createNode_creates_a_node_of_integer_type () {
 	assertEqual((*(int*)(intNode->data)),20);
 	assertEqual((int)(intNode->next),0 );
 }
+
+void test_createNode_creates_a_node_of_float_type () {
+	float data = 20.7; 
+	Node *floatNode = create_node(&data);
+	assertEqual((*(float*)(floatNode->data)),(float)20.7);
+	assertEqual((int)(floatNode->next),0 );
+}
+
+void test_createNode_creates_a_node_of_char_type () {
+	char data = 'k'; 
+	Node *charNode = create_node(&data);
+	assertEqual((*(char*)(charNode->data)),'k');
+	assertEqual((int)(charNode->next),0 );
+}
+
+void test_add_to_list_adds_the_given_node_in_the_list (){
+	LinkedList list;
+	Node intNode;
+	int result;
+	list = createList();
+	result = add_to_list(&list,&intNode);
+	assertEqual(list.head, &intNode);
+	assertEqual(list.tail, &intNode);
+	assertEqual(list.count, 1);
+}

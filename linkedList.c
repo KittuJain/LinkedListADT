@@ -8,10 +8,17 @@ LinkedList createList(void){
 	return list;
 }
 
-Node * create_node(void *data){
-	Node *node;
-	node = malloc(sizeof(node));
+Node* create_node(void *data){
+	Node* node;
+	node = malloc(sizeof(Node));
 	node->data = data;
 	node->next = NULL;
 	return node;
+}
+
+int add_to_list(LinkedList* list,Node* node){
+	list->head = node;
+	list->tail = node;
+	list->count++;
+	return 1;
 }
