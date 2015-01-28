@@ -17,8 +17,13 @@ Node* create_node(void *data){
 }
 
 int add_to_list(LinkedList* list,Node* node){
-	list->head = node;
-	list->tail = node;
+	if(list->head == NULL){
+		list->head = node;
+		list->tail = node;		
+	}
+	else{
+		list->tail->next = node;
+	}
 	list->count++;
 	return 1;
 }

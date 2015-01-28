@@ -16,6 +16,7 @@ void test_createNode_creates_a_node_of_integer_type () {
 	Node *intNode = create_node(&data);
 	assertEqual((*(int*)(intNode->data)),20);
 	assertEqual((int)(intNode->next),0 );
+	free(intNode);
 }
 
 void test_createNode_creates_a_node_of_float_type () {
@@ -23,6 +24,7 @@ void test_createNode_creates_a_node_of_float_type () {
 	Node *floatNode = create_node(&data);
 	assertEqual((*(float*)(floatNode->data)),(float)20.7);
 	assertEqual((int)(floatNode->next),0 );
+	free(floatNode);
 }
 
 void test_createNode_creates_a_node_of_char_type () {
@@ -30,6 +32,7 @@ void test_createNode_creates_a_node_of_char_type () {
 	Node *charNode = create_node(&data);
 	assertEqual((*(char*)(charNode->data)),'k');
 	assertEqual((int)(charNode->next),0 );
+	free(charNode);
 }
 
 void test_add_to_list_adds_the_given_node_in_the_list (){
