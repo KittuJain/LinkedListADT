@@ -43,3 +43,15 @@ void traverse(LinkedList list, void (*function_ptr)(void *data)){
 		walker = list.head->next;
 	}
 }
+
+void* getElementAt(LinkedList list, int index){
+	int count = 0;
+	Node_ptr walker = list.head;
+	while(walker != NULL){
+		if(count==index)
+			return walker->data;
+		count++;
+		walker = list.head->next;
+	}
+	return NULL;
+}

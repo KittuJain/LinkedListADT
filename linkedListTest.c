@@ -169,3 +169,26 @@ void test_traverse_goes_through_a_list_and_increments_each_element_of_list_by_1 
 	assert(intNode->next==0 );
 	free(intNode);
 }
+
+void test_getElementAt_returns_the_first_element_of_list (){
+	int data = 10;
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list, intNode);
+	assertEqual(*(int*)getElementAt(list, 0),10);
+	free(intNode);
+}
+
+void test_getElementAt_returns_the_second_element_of_list (){
+	int data1 = 2, data2 = 4, data3 = 6;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(*(int*)getElementAt(list, 1),4);
+	free(node1);
+	free(node2);
+	free(node3);
+}
