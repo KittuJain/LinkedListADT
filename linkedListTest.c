@@ -36,51 +36,77 @@ void test_createNode_creates_a_node_of_char_type () {
 }
 
 void test_add_to_list_adds_the_given_node_in_the_list (){
-	LinkedList list;
+	LinkedList list = createList();
 	Node intNode;
-	int result;
-	list = createList();
-	result = add_to_list(&list,&intNode);
+	int result = add_to_list(&list,&intNode);
 	assertEqual(list.head, &intNode);
 	assertEqual(list.tail, &intNode);
 	assertEqual(list.count, 1);
 }
 
 void test_get_first_element_returns_first_element_of_the_list (){
-	LinkedList list;
-	int result;
 	int data = 20;
-	Node *intNode; 
-	list = createList();
-	intNode = create_node(&data);
-	result = add_to_list(&list,intNode);
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int	result = add_to_list(&list,intNode);
 	assertEqual(*(int*)get_first_element(list),20);
 	free(intNode);
 }
 
+void test_get_first_element_returns_first_element_of_the_list_of_float_type (){
+	float data = 20.7;
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
+	assertEqual(*(float*)get_first_element(list),(float)20.7);
+	free(intNode);
+}
+
+void test_get_first_element_returns_first_element_of_the_list_of_char_type (){
+	char data = 'a';
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
+	assertEqual(*(char*)get_first_element(list),'a');
+	free(intNode);
+}
+
 void test_get_last_element_returns_last_element_of_the_list (){
-	LinkedList list;
-	int result;
 	int data = 20;
-	Node *intNode; 
-	list = createList();
-	intNode = create_node(&data);
-	result = add_to_list(&list,intNode);
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
 	assertEqual(*(int*)get_last_element(list),20);
+	free(intNode);
+}
+
+void test_get_last_element_returns_last_element_of_the_list_of_float_type (){
+	float data = 20.7;
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
+	assertEqual(*(float*)get_last_element(list),(float)20.7);
+	free(intNode);
+}
+
+void test_get_last_element_returns_last_element_of_the_list_of_char_type (){
+	char data = 'a';
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
+	assertEqual(*(char*)get_last_element(list),'a');
 	free(intNode);
 }
 
 void add (void* data){
 	*(int*)data += 1;
 }
+
 void test_traverse_goes_through_a_list_and_process_each_element_of_list (){
-	LinkedList list;
-	int result;
 	int data = 20;
-	Node *intNode; 
-	list = createList();
-	intNode = create_node(&data);
-	result = add_to_list(&list,intNode);
+	LinkedList list = createList();
+	Node *intNode = create_node(&data); 
+	int result = add_to_list(&list,intNode);
 	traverse(list, add);
 	assertEqual((*(int*)(intNode->data)),21);
 	assertEqual((int)(intNode->next),0 );
