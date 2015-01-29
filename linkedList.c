@@ -31,3 +31,7 @@ int add_to_list(LinkedList* list,Node* node){
 void *get_first_element(LinkedList list){
 	return list.head->data;
 }
+
+void *get_last_element(LinkedList list){
+	return list.tail->data;
+}

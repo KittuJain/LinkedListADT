@@ -57,3 +57,13 @@ void test_get_first_element_returns_first_element_of_the_list (){
 	result = add_to_list(&list,intNode);
 	assertEqual(*(int*)get_first_element(list),20);
 }
+void test_get_last_element_returns_last_element_of_the_list (){
+	LinkedList list;
+	int result;
+	int data = 20;
+	Node *intNode; 
+	list = createList();
+	intNode = create_node(&data);
+	result = add_to_list(&list,intNode);
+	assertEqual(*(int*)get_last_element(list),20);
+}
