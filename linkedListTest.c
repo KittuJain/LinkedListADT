@@ -101,6 +101,16 @@ void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_char_type_da
 	assertEqual(*(char *)(*(list.tail)).data,'B');
 }
 
+void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_string_type_data() {
+	char *c = "Krati",*d = "Jain";
+	LinkedList list = createList();
+	Node *node1 = create_node(&c),*node2 = create_node(&d);
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	assert(*(String *)(*(list.head)).data=="Krati");
+	assert(*(String *)(*(list.tail)).data=="Jain");
+}
+
 void test_get_first_element_returns_first_element_of_the_list (){
 	int data = 20;
 	LinkedList list = createList();
@@ -126,6 +136,27 @@ void test_get_first_element_returns_first_element_of_the_list_of_char_type (){
 	int result = add_to_list(&list,intNode);
 	assertEqual(*(char*)get_first_element(list),'a');
 	free(intNode);
+}
+
+void test_get_first_element_returns_first_element_of_the_list_of_string_type (){
+	String data = "Dolly";
+	LinkedList list = createList();
+	Node *intNode = create_node(&data);
+	int result = add_to_list(&list,intNode);
+	assert(*(String*)get_first_element(list)=="Dolly");
+	free(intNode);
+}
+
+void test_get_first_element_returns_first_element_of_the_two_elementList_of_string_type (){
+	String data1 = "Dolly";
+	String data2 = "Krati";
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2);
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	assert(*(String*)get_first_element(list)=="Dolly");
+	free(node1);
+	free(node2);
 }
 
 void test_get_last_element_returns_last_element_of_the_list (){
@@ -154,6 +185,19 @@ void test_get_last_element_returns_last_element_of_the_list_of_char_type (){
 	assertEqual(*(char*)get_last_element(list),'a');
 	free(intNode);
 }
+
+void test_get_last_element_returns_last_element_of_the_two_elementList_of_string_type (){
+	String data1 = "Dolly";
+	String data2 = "Krati";
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2);
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	assert(*(String*)get_last_element(list)=="Krati");
+	free(node1);
+	free(node2);
+}
+
 
 void add (void* data){
 	*(int*)data += 1;
@@ -193,6 +237,48 @@ void test_getElementAt_returns_the_second_element_of_list (){
 	free(node3);
 }
 
+void test_getElementAt_returns_the_second_element_of_list_of_float (){
+	float data1 = 2.5, data2 = 4.1, data3 = 6.3;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(*(float*)getElementAt(list, 1),(float)4.1);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_getElementAt_returns_the_second_element_of_list_of_char (){
+	char data1 = 'k', data2 = 'r', data3 = 'v';
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(*(char*)getElementAt(list, 1),'r');
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_getElementAt_returns_the_second_element_of_list_of_string (){
+	char *data1 = "Krati", *data2 = "Ambuj", *data3 = "Dolly";
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assert(*(String*)getElementAt(list, 2)=="Dolly");
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
 void test_indexOf_gives_0_when_element_is_present_at_first_position_in_int_data_type(){
 	int data1 = 2, data2 = 4, data3 = 6;
 	LinkedList list = createList();
@@ -202,6 +288,62 @@ void test_indexOf_gives_0_when_element_is_present_at_first_position_in_int_data_
 	add_to_list(&list,node2);
 	add_to_list(&list,node3);
 	assertEqual(indexOf(list, &data1),0);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_indexOf_gives_1_when_element_is_present_at_first_position_in_float_data_type(){
+	float data1 = 10.23, data2 = 44.24, data3 = 86.78;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data2),1);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_indexOf_gives_1_when_element_is_present_at_first_position_in_char_data_type(){
+	char data1 = 'k', data2 = 'a', data3 = 'v';
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data2),1);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_indexOf_gives_1_when_element_is_present_at_first_position_in_string_data_type(){
+	char *data1 = "Krati", *data2 = "Ambuj", *data3 = "Jain";
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data2),1);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_indexOf_gives_minus_1_when_element_is_not_present_in_int_data_type(){
+	int data1 = 2, data2 = 4, data3 = 6, data4 = 20;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data4),-1);
 	free(node1);
 	free(node2);
 	free(node3);
