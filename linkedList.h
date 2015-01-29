@@ -28,4 +28,4 @@ void* get_last_element(LinkedList);
 void traverse(LinkedList, void (*)(void *data));
 void* getElementAt(LinkedList, int);
 int indexOf(LinkedList, void *);
-void* deleteElementAt(LinkedList, int);
+void* deleteElementAt(LinkedList*, int);

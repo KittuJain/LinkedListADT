@@ -349,7 +349,7 @@ void test_indexOf_gives_minus_1_when_element_is_not_present_in_int_data_type(){
 	free(node3);
 }
 
-void test_deleteElementAt_deletes_the_second_element (){
+void test_deleteElementAt_1_deletes_the_second_element (){
 	int data1 = 2, data2 = 4, data3 = 6;
 	LinkedList list = createList();
 	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
@@ -358,8 +358,10 @@ void test_deleteElementAt_deletes_the_second_element (){
 	add_to_list(&list,node2);
 	add_to_list(&list,node3);
 	assertEqual(indexOf(list, &data3),2);
-	deleteElementAt(list, 1);
+	assertEqual(list.count,3);
+	deleteElementAt(&list, 1);
 	assertEqual(indexOf(list, &data3),1);
+	assertEqual(list.count,2);
 	free(node1);
 	free(node2);
 	free(node3);
