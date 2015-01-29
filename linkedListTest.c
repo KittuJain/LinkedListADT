@@ -83,5 +83,6 @@ void test_traverse_goes_through_a_list_and_process_each_element_of_list (){
 	result = add_to_list(&list,intNode);
 	traverse(list, add);
 	assertEqual((*(int*)(intNode->data)),21);
+	assertEqual((int)(intNode->next),0 );
 	free(intNode);
 }
