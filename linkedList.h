@@ -22,3 +22,4 @@ struct student{
 LinkedList createList(void);
 Node * create_node(void *data);
 int add_to_list(LinkedList *,Node *);
+void *get_first_element(LinkedList);
