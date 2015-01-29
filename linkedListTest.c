@@ -46,7 +46,6 @@ void test_add_to_list_adds_the_given_node_in_the_list (){
 	assertEqual(list.count, 1);
 }
 
-
 void test_get_first_element_returns_first_element_of_the_list (){
 	LinkedList list;
 	int result;
@@ -56,7 +55,9 @@ void test_get_first_element_returns_first_element_of_the_list (){
 	intNode = create_node(&data);
 	result = add_to_list(&list,intNode);
 	assertEqual(*(int*)get_first_element(list),20);
+	free(intNode);
 }
+
 void test_get_last_element_returns_last_element_of_the_list (){
 	LinkedList list;
 	int result;
@@ -66,4 +67,21 @@ void test_get_last_element_returns_last_element_of_the_list (){
 	intNode = create_node(&data);
 	result = add_to_list(&list,intNode);
 	assertEqual(*(int*)get_last_element(list),20);
+	free(intNode);
+}
+
+void add (void* data){
+	*(int*)data += 1;
+}
+void test_traverse_goes_through_a_list_and_process_each_element_of_list (){
+	LinkedList list;
+	int result;
+	int data = 20;
+	Node *intNode; 
+	list = createList();
+	intNode = create_node(&data);
+	result = add_to_list(&list,intNode);
+	traverse(list, add);
+	assertEqual((*(int*)(intNode->data)),21);
+	free(intNode);
 }
