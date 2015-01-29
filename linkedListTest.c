@@ -51,6 +51,14 @@ void test_add_to_list_adds_the_given_node_in_the_list (){
 	assertEqual(list.count, 1);
 }
 
+void test_add_to_list_adds_the_given_double_node_in_the_list() {
+	double c = 21.1;
+	LinkedList list = createList();
+	Node *charNode = create_node(&c);
+	add_to_list(&list,charNode);
+	assert(*(double *)(*(list.head)).data==21.1);
+	assert(*(double *)(*(list.tail)).data==21.1);
+}
 
 void test_add_to_list_adds_the_given_char_node_in_the_list() {
 	char c = 'A';
