@@ -55,3 +55,15 @@ void* getElementAt(LinkedList list, int index){
 	}
 	return NULL;
 }
+
+int indexOf(LinkedList list, void* element){
+	int count = 0;
+	Node_ptr walker = list.head;
+	while(walker != NULL){
+		if(walker->data==element)
+			return count;
+		count++;
+		walker = list.head->next;
+	}
+	return -1;
+}

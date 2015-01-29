@@ -192,3 +192,14 @@ void test_getElementAt_returns_the_second_element_of_list (){
 	free(node2);
 	free(node3);
 }
+
+void test_indexOf_finds_0_when_element_is_present_at_first_position(){
+	int data1 = 2, data2 = 4, data3 = 6;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data1),0);
+}
