@@ -193,7 +193,7 @@ void test_getElementAt_returns_the_second_element_of_list (){
 	free(node3);
 }
 
-void test_indexOf_finds_0_when_element_is_present_at_first_position(){
+void test_indexOf_gives_0_when_element_is_present_at_first_position_in_int_data_type(){
 	int data1 = 2, data2 = 4, data3 = 6;
 	LinkedList list = createList();
 	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
@@ -202,4 +202,23 @@ void test_indexOf_finds_0_when_element_is_present_at_first_position(){
 	add_to_list(&list,node2);
 	add_to_list(&list,node3);
 	assertEqual(indexOf(list, &data1),0);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_deleteElementAt_deletes_the_second_element (){
+	int data1 = 2, data2 = 4, data3 = 6;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data3),2);
+	deleteElementAt(list, 1);
+	assertEqual(indexOf(list, &data3),1);
+	free(node1);
+	free(node2);
+	free(node3);
 }

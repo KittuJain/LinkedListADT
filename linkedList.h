@@ -21,10 +21,11 @@ struct student{
 };
 
 LinkedList createList(void);
-Node * create_node(void *data);
+Node* create_node(void *data);
 int add_to_list(LinkedList *,Node *);
-void *get_first_element(LinkedList);
-void *get_last_element(LinkedList);
+void* get_first_element(LinkedList);
+void* get_last_element(LinkedList);
 void traverse(LinkedList, void (*)(void *data));
 void* getElementAt(LinkedList, int);
 int indexOf(LinkedList, void *);
+void* deleteElementAt(LinkedList, int);

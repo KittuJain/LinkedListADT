@@ -37,10 +37,10 @@ void *get_last_element(LinkedList list){
 }
 
 void traverse(LinkedList list, void (*function_ptr)(void *data)){
-	void* walker = list.head;
+	Node_ptr walker = list.head;
 	while(walker != NULL){
 		function_ptr(list.head->data);
-		walker = list.head->next;
+		walker = walker->next;
 	}
 }
 
@@ -51,7 +51,7 @@ void* getElementAt(LinkedList list, int index){
 		if(count==index)
 			return walker->data;
 		count++;
-		walker = list.head->next;
+		walker = walker->next;
 	}
 	return NULL;
 }
@@ -63,7 +63,21 @@ int indexOf(LinkedList list, void* element){
 		if(walker->data==element)
 			return count;
 		count++;
-		walker = list.head->next;
+		walker = walker->next;
 	}
 	return -1;
+}
+
+void* deleteElementAt(LinkedList list, int index){
+	int count = 0;
+	Node_ptr walker = list.head;
+	while(walker != NULL){
+		if(count == index-1){
+			walker->next = walker->next->next;
+			return walker;
+		}
+		count++;
+		walker =  walker->next;
+	}
+	return walker;
 }
