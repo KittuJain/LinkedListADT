@@ -2,7 +2,7 @@ typedef struct linked_list LinkedList;
 typedef struct node Node;
 typedef struct node* Node_ptr;
 typedef struct student Student;
-
+#define String char* 
 struct linked_list{
 	Node_ptr head;
 	Node_ptr tail;
