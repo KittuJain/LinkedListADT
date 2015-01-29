@@ -1,17 +1,17 @@
 typedef struct linked_list LinkedList;
 typedef struct node Node;
-typedef struct node* node_ptr;
+typedef struct node* Node_ptr;
 typedef struct student Student;
 
 struct linked_list{
-	node_ptr head;
-	node_ptr tail;
+	Node_ptr head;
+	Node_ptr tail;
 	int count;
 };
 
 struct node{
 	void* data;
-	node_ptr next;
+	Node_ptr next;
 };
 
 struct student{

@@ -39,9 +39,23 @@ void test_add_to_list_adds_the_given_node_in_the_list (){
 	LinkedList list = createList();
 	Node intNode;
 	int result = add_to_list(&list,&intNode);
-	assertEqual(list.head, &intNode);
-	assertEqual(list.tail, &intNode);
+	assertEqual((int)list.head, (int)&intNode);
+	assertEqual((int)list.tail, (int)&intNode);
 	assertEqual(list.count, 1);
+}
+
+void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_int_type_data () {
+    int data1 = 2, data2 = 4;
+    LinkedList list = createList();
+    Node *node1 = create_node(&data1), *node2 = create_node(&data2);
+
+    assertEqual(add_to_list(&list, node1), 1);
+    assertEqual(add_to_list(&list, node2), 1);
+    assertEqual((int)list.head, (int)node1);
+    assertEqual((int)list.tail, (int)node2);
+    assertEqual((int)node1->next, (int)node2);
+    free(node1);
+    free(node2);
 }
 
 void test_get_first_element_returns_first_element_of_the_list (){
@@ -102,7 +116,7 @@ void add (void* data){
 	*(int*)data += 1;
 }
 
-void test_traverse_goes_through_a_list_and_process_each_element_of_list (){
+void test_traverse_goes_through_a_list_and_increments_each_element_of_list_by_1 (){
 	int data = 20;
 	LinkedList list = createList();
 	Node *intNode = create_node(&data); 
