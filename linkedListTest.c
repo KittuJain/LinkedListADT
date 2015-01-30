@@ -43,6 +43,7 @@ void test_createNode_creates_a_node_of_string_type() {
 	Node *stringNode = create_node(&c);
 	assertEqual(strcmp(*(String *)((*stringNode).data),"Krati"),0);
 	assert((*stringNode).next==0);
+	free(stringNode);
 }
 
 void test_add_to_list_adds_the_given_node_in_the_list (){
@@ -57,10 +58,11 @@ void test_add_to_list_adds_the_given_node_in_the_list (){
 void test_add_to_list_adds_the_given_double_node_in_the_list() {
 	double c = 21.1;
 	LinkedList list = createList();
-	Node *charNode = create_node(&c);
-	add_to_list(&list,charNode);
+	Node *doubleNode = create_node(&c);
+	add_to_list(&list,doubleNode);
 	assert(*(double *)(*(list.head)).data==21.1);
 	assert(*(double *)(*(list.tail)).data==21.1);
+	free(doubleNode);
 }
 
 void test_add_to_list_adds_the_given_char_node_in_the_list() {
@@ -69,15 +71,17 @@ void test_add_to_list_adds_the_given_char_node_in_the_list() {
 	Node *charNode = create_node(&c);
 	add_to_list(&list,charNode);
 	assertEqual(*(char *)(*(list.head)).data,'A');
+	free(charNode);
 }
 
 void test_add_to_list_adds_the_given_string_node_in_the_list() {
 	String c = "Krati";
 	LinkedList list = createList();
-	Node *charNode = create_node(&c);
-	add_to_list(&list,charNode);
+	Node *stringNode = create_node(&c);
+	add_to_list(&list,stringNode);
 	assertEqual(strcmp(*(String *)(*(list.head)).data,"Krati"),0);
 	assertEqual(strcmp(*(String *)(*(list.tail)).data,"Krati"),0);
+	free(stringNode);
 }
 
 void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_int_type_data () {
@@ -102,6 +106,8 @@ void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_char_type_da
 	add_to_list(&list,node2);
 	assertEqual(*(char *)(*(list.head)).data,'A');
 	assertEqual(*(char *)(*(list.tail)).data,'B');
+	free(node1);
+	free(node2);
 }
 
 void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_string_type_data() {
@@ -112,6 +118,8 @@ void test_add_to_list_should_add_two_nodes_into_a_linkedList_with_a_string_type_
 	add_to_list(&list,node2);
 	assertEqual(strcmp(*(String *)(*(list.head)).data,"Krati"),0);
 	assertEqual(strcmp(*(String *)(*(list.tail)).data,"Jain"),0);
+	free(node1);
+	free(node2);
 }
 
 void test_get_first_element_returns_first_element_of_the_list (){
@@ -135,19 +143,19 @@ void test_get_first_element_returns_first_element_of_the_list_of_float_type (){
 void test_get_first_element_returns_first_element_of_the_list_of_char_type (){
 	char data = 'a';
 	LinkedList list = createList();
-	Node *intNode = create_node(&data);
-	int result = add_to_list(&list,intNode);
+	Node *charNode = create_node(&data);
+	int result = add_to_list(&list,charNode);
 	assertEqual(*(char*)get_first_element(list),'a');
-	free(intNode);
+	free(charNode);
 }
 
 void test_get_first_element_returns_first_element_of_the_list_of_string_type (){
 	String data = "Dolly";
 	LinkedList list = createList();
-	Node *intNode = create_node(&data);
-	int result = add_to_list(&list,intNode);
+	Node *stringNode = create_node(&data);
+	int result = add_to_list(&list,stringNode);
 	assert(*(String*)get_first_element(list)=="Dolly");
-	free(intNode);
+	free(stringNode);
 }
 
 void test_get_first_element_returns_first_element_of_the_two_elementList_of_string_type (){
@@ -174,19 +182,19 @@ void test_get_last_element_returns_last_element_of_the_list (){
 void test_get_last_element_returns_last_element_of_the_list_of_float_type (){
 	float data = 20.7;
 	LinkedList list = createList();
-	Node *intNode = create_node(&data);
-	int result = add_to_list(&list,intNode);
+	Node *floatNode = create_node(&data);
+	int result = add_to_list(&list,floatNode);
 	assertEqual(*(float*)get_last_element(list),(float)20.7);
-	free(intNode);
+	free(floatNode);
 }
 
 void test_get_last_element_returns_last_element_of_the_list_of_char_type (){
 	char data = 'a';
 	LinkedList list = createList();
-	Node *intNode = create_node(&data);
-	int result = add_to_list(&list,intNode);
+	Node *charNode = create_node(&data);
+	int result = add_to_list(&list,charNode);
 	assertEqual(*(char*)get_last_element(list),'a');
-	free(intNode);
+	free(charNode);
 }
 
 void test_get_last_element_returns_last_element_of_the_two_elementList_of_string_type (){
@@ -459,6 +467,9 @@ void test_deleteElementAt_should_return_2_when_index_is_0 () {
 
     assertEqual(*(int*)deleteElementAt(&list, 0), data1);
     assert(list.head==node2);
+    free(node1);
+	free(node2);
+	free(node3);
 }
 
 void test_deleteElementAt_should_return_6_when_index_is_2 () {
@@ -471,6 +482,9 @@ void test_deleteElementAt_should_return_6_when_index_is_2 () {
 
     assertEqual(*(int*)deleteElementAt(&list, 2), data3);
     assert(list.tail==node2);
+    free(node1);
+	free(node2);
+	free(node3);
 }
 
 void test_asArray_populates_array_with_elements_in_list () {
@@ -486,4 +500,33 @@ void test_asArray_populates_array_with_elements_in_list () {
 	assertEqual(*(int*)array[0], data1);
 	assertEqual(*(int*)array[1], data2);
 	assertEqual(*(int*)array[2], data3);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+int isEven(void *data){
+	return *(int*)data % 2 == 0;
+}
+
+void test_filter_gives_list_of_even_numbers(){
+	int data1 = 18, data2 = 12, data3 = 13, data4 = 15;
+	LinkedList list = createList();
+	LinkedList *evenNumbers;
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3), *node4 = create_node(&data4);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	add_to_list(&list,node4);
+
+	evenNumbers = filter(list, isEven);
+
+	assert(evenNumbers->head->data==&data1);
+	assert(evenNumbers->tail->data==&data2);
+	assertEqual(evenNumbers->count,2)
+	free(node1);
+	free(node2);
+	free(node3);
+	free(node4);
 }
