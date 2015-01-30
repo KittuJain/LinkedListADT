@@ -119,19 +119,19 @@ int asArray(LinkedList list, void **array){
 LinkedList* filter(LinkedList list, int (*function_ptr)(void* data)){
 	int counter = 0;
 
-	LinkedList *even_numbers ;
+	LinkedList *filteredList ;
 	Node_ptr walker = list.head;
 
-	even_numbers = calloc(sizeof(LinkedList),1);
+	filteredList = calloc(sizeof(LinkedList),1);
 
 
 	while(walker != NULL){
 		if(function_ptr(walker->data)==1){
 			Node *node = create_node(walker->data);
-			add_to_list(even_numbers, node);
+			add_to_list(filteredList, node);
 		}
 		walker = walker->next;
 	}
 
-	return even_numbers;
+	return filteredList;
 }

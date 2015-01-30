@@ -530,3 +530,29 @@ void test_filter_gives_list_of_even_numbers(){
 	free(node3);
 	free(node4);
 }
+
+int isGreaterThan5(void *data){
+	return *(float*)data > 5;
+}
+
+void test_filter_gives_list_of_numbers_greaterThan5(){
+	float data1 = 18.78, data2 = 2.23, data3 = 13.90, data4 = 1.5;
+	LinkedList list = createList();
+	LinkedList *numbers;
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3), *node4 = create_node(&data4);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	add_to_list(&list,node4);
+
+	numbers = filter(list, isGreaterThan5);
+
+	assert(numbers->head->data==&data1);
+	assert(numbers->tail->data==&data3);
+	assertEqual(numbers->count,2)
+	free(node1);
+	free(node2);
+	free(node3);
+	free(node4);
+}
