@@ -68,3 +68,38 @@ int indexOf(LinkedList list, void* element){
 	}
 	return -1;
 }
+
+void* deleteElementAt(LinkedList *list, int index) {
+	int count = 0;
+	Node_ptr walker = list->head;
+	Node_ptr previousNode = NULL;
+
+	while(walker != NULL){
+		
+		if(index == 0){
+			list->head = walker->next;
+		
+			if(list->count == 1){
+				list->tail = NULL;
+			}
+		
+			list->count--;
+			return walker->data;
+		}
+		
+		if(count == index){
+			if(index == (list->count-1)){
+				list->tail = previousNode;
+				list->count--;
+				return walker->data;
+			}
+			previousNode->next = walker->next;
+			list->count--;
+			return walker->data;
+		}
+		previousNode = walker;
+		walker = walker->next;
+		count++;
+	}
+	return NULL;
+}

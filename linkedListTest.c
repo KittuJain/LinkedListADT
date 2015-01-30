@@ -416,3 +416,59 @@ void test_indexOf_gives_1_when_element_is_present_at_first_position_in_string_da
 	free(node2);
 	free(node3);
 }
+
+void test_indexOf_gives_minus_1_when_element_is_not_present_in_int_data_type(){
+	int data1 = 2, data2 = 4, data3 = 6, data4 = 20;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data4),-1);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_deleteElementAt_1_deletes_the_second_element (){
+	int data1 = 2, data2 = 4, data3 = 6;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(indexOf(list, &data3),2);
+	assertEqual(list.count,3);
+	assertEqual(*((int*)deleteElementAt(&list, 1)), data2);
+	assertEqual(indexOf(list, &data3),1);
+	assertEqual(list.count,2);
+	free(node1);
+	free(node2);
+	free(node3);
+}
+
+void test_deleteElementAt_should_return_2_when_index_is_0 () {
+    int data1 = 2, data2 = 4, data3 = 6;
+    LinkedList list = createList();
+    Node_ptr node1 = create_node(&data1), node2 = create_node(&data2), node3 = create_node(&data3);
+    assertEqual(add_to_list(&list, node1), 1);
+    assertEqual(add_to_list(&list, node2), 1);
+    assertEqual(add_to_list(&list, node3), 1);
+
+    assertEqual(*(int*)deleteElementAt(&list, 0), data1);
+    assert(list.head==node2);
+}
+
+void test_deleteElementAt_should_return_6_when_index_is_2 () {
+    int data1 = 2, data2 = 4, data3 = 6;
+    LinkedList list = createList();
+    Node_ptr node1 = create_node(&data1), node2 = create_node(&data2), node3 = create_node(&data3);
+    assertEqual(add_to_list(&list, node1), 1);
+    assertEqual(add_to_list(&list, node2), 1);
+    assertEqual(add_to_list(&list, node3), 1);
+
+    assertEqual(*(int*)deleteElementAt(&list, 2), data3);
+    assert(list.tail==node2);
+}
