@@ -472,3 +472,18 @@ void test_deleteElementAt_should_return_6_when_index_is_2 () {
     assertEqual(*(int*)deleteElementAt(&list, 2), data3);
     assert(list.tail==node2);
 }
+
+void test_asArray_populates_array_with_elements_in_list () {
+	int *array[3];
+	int data1 = 2, data2 = 4, data3 = 6;
+	LinkedList list = createList();
+	Node *node1 = create_node(&data1), *node2 = create_node(&data2), *node3 = create_node(&data3);
+
+	add_to_list(&list,node1);
+	add_to_list(&list,node2);
+	add_to_list(&list,node3);
+	assertEqual(asArray(list, (void*)&array),1);
+	assertEqual(*(int*)array[0], data1);
+	assertEqual(*(int*)array[1], data2);
+	assertEqual(*(int*)array[2], data3);
+}

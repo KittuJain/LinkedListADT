@@ -29,3 +29,4 @@ void traverse(LinkedList, void (*)(void *data));
 void* getElementAt(LinkedList, int);
 int indexOf(LinkedList, void *);
 void* deleteElementAt(LinkedList*, int);
+int asArray(LinkedList, void **);

@@ -97,9 +97,21 @@ void* deleteElementAt(LinkedList *list, int index) {
 			list->count--;
 			return walker->data;
 		}
+
 		previousNode = walker;
 		walker = walker->next;
 		count++;
 	}
 	return NULL;
+}
+
+int asArray(LinkedList list, void **array){
+	int counter = 0;
+	Node_ptr walker = list.head;
+	while(walker != NULL){
+		array[counter] = walker->data;
+		counter++;
+		walker = walker->next;
+	}
+	return 1;
 }
